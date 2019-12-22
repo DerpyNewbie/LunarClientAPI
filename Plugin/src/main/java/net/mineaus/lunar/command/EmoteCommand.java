@@ -21,12 +21,12 @@ public class EmoteCommand implements CommandExecutor {
         Emote emote;
 
         if (!LunarClientPlugin.getApi().isAuthenticated(player)) {
-            player.sendMessage(ChatColor.RED + "You must be on Lunar Client to perform emotes.");
+            player.sendMessage(LunarClientPlugin.getMessage("msg.emote.not-on-client"));
             return true;
         }
 
         if (args.length < 1) {
-            player.sendMessage(ChatColor.RED + "Please specify an emote.");
+            player.sendMessage(LunarClientPlugin.getMessage("msg.emote.not-specified"));
             return false;
         }
 
@@ -63,7 +63,7 @@ public class EmoteCommand implements CommandExecutor {
         // Perform emote
 
         if (emote == null) {
-            player.sendMessage(ChatColor.RED + "That is not valid emote!");
+            player.sendMessage(LunarClientPlugin.getMessage("msg.emote.not-valid", args[0]));
             for (Emote emotes : Emote.values()) {
                 player.sendMessage(ChatColor.RED + " - " + emotes.name());
             }
@@ -71,7 +71,7 @@ public class EmoteCommand implements CommandExecutor {
         }
 
         if (!player.hasPermission("lunar.command.emote." + emote.name())) {
-            player.sendMessage(ChatColor.RED + "You do not have enough permission to perform emote " + emote.name() + ".");
+            player.sendMessage(LunarClientPlugin.getMessage("msg.emote.no-perm", emote.name()));
             return true;
         }
 

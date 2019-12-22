@@ -1,6 +1,19 @@
 perm:
   lunarclient: "&cYou do not have permission to execute this command."
-  emote: "&cYou do not have permission to execute this command.\n&cPurchase a rank at &4store.zenith.cool &cto bypass this restriction."
+  emote: "&cYou do not have permission to execute this command."
+msg:
+  emote:
+    no-perm: "&cYou do not have permission to use {0}."
+    not-valid: "&cThat is not valid emote!"
+    not-specified: "&cPlease specify an emote."
+    not-on-client: "&cYou must be on Lunar Client to perform emotes."
+  lunarclient:
+    player-true: "&a{0} is on Lunar Client."
+    player-false: "&c{0} is not on Lunar Client."
+    player-offline: "&cThe player '{0}' is not online."
+    list-header: "&7&m-------&b Lunar Client Users &7&m-------"
+    list-footer: "&7&m------------------------------"
+    list-no-one: "&cThere is no one currently using the client."
 kick-player:
   enabled: true
   message: "&cLunar Client is required to play on HYS %SPACER% &cDownload at &olunar.gg/client"

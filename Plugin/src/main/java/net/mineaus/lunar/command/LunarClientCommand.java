@@ -18,18 +18,18 @@ public class LunarClientCommand implements CommandExecutor {
 
             if (target != null) {
                 if (targetData.isLunarClient()) {
-                    sender.sendMessage(ChatColor.GREEN + target.getName() + " is on Lunar Client.");
+                    sender.sendMessage(LunarClientPlugin.getMessage("msg.lunarclient.player-true", target.getName()));
                     return true;
                 } else {
-                    sender.sendMessage(ChatColor.RED + target.getName() + " is not on Lunar Client.");
+                    sender.sendMessage(LunarClientPlugin.getMessage("msg.lunarclient.player-false", target.getName()));
                     return true;
                 }
             } else {
-                sender.sendMessage(ChatColor.RED + "The player '" + args[0] + "' is not online.");
+                sender.sendMessage(LunarClientPlugin.getMessage("msg.lunarclient.player-offline", args[0]));
                 return false;
             }
         } else {
-            StringBuilder sb = new StringBuilder(ChatColor.GRAY + ChatColor.STRIKETHROUGH.toString()).append("-------").append(ChatColor.AQUA).append(" Lunar Client").append(ChatColor.AQUA).append(" Users ").append(ChatColor.GRAY).append(ChatColor.STRIKETHROUGH.toString()).append(" -------\n");
+            StringBuilder sb = new StringBuilder(LunarClientPlugin.getMessage("msg.lunarclient.list-header"));
 
             int amount = LunarClientPlugin.getApi().getUserManager().getPlayerDataMap().size();
 
@@ -42,10 +42,10 @@ public class LunarClientCommand implements CommandExecutor {
                     }
                 }
             } else {
-                sb.append(ChatColor.RED).append("There is no one currently using the client.").append("\n");
+                sb.append(LunarClientPlugin.getMessage("msg.lunarclient.list-no-one")).append("\n");
             }
 
-            sb.append(ChatColor.GRAY).append(ChatColor.STRIKETHROUGH.toString()).append("------------------------------");
+            sb.append(LunarClientPlugin.getMessage("msg.lunarclient.list-footer"));
             sender.sendMessage(sb.toString());
             return true;
         }
