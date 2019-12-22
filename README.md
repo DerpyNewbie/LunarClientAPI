@@ -1,3 +1,8 @@
+# Description
+this is forked version of https://github.com/skeltalgit/LunarClientAPI.
+made it so you can configure messages/permissions bit more than original one.
+
+# Original message
 ## LunarClientAPI
 
 The Lunar Client API will allow you to detect when a player is running Lunar Client, enable and disable HUD modules, allow x-ray for your staff, and much more.
