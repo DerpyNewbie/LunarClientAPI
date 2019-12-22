@@ -1,3 +1,6 @@
+perm:
+  lunarclient: "&cYou do not have permission to execute this command."
+  emote: "&cYou do not have permission to execute this command.\n&cPurchase a rank at &4store.zenith.cool &cto bypass this restriction."
 kick-player:
   enabled: true
   message: "&cLunar Client is required to play on HYS %SPACER% &cDownload at &olunar.gg/client"

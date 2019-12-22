@@ -81,6 +81,10 @@ public class LunarClientPlugin extends JavaPlugin {
         this.getCommand("lunarclient").setExecutor(new LunarClientCommand());
         this.getCommand("emote").setExecutor(new EmoteCommand());
 
+        // Change permission messages
+        this.getCommand("lunarclient").setPermissionMessage(this.getConfig().getString("perm.lunarclient"));
+        this.getCommand("emote").setPermissionMessage(this.getConfig().getString("perm.emote"));
+
         // Create notes
         this.saveResource("notes.yml", true);
     }
