@@ -26,7 +26,10 @@ import java.util.UUID;
 @Getter
 public class LunarClientPlugin extends JavaPlugin {
 
-    @Getter private static LunarClientAPI api;
+    @Getter
+    private static LunarClientAPI api;
+    @Getter
+    private static LunarClientPlugin plugin;
 
     /* Managers */
     private UserManager userManager;
@@ -38,6 +41,7 @@ public class LunarClientPlugin extends JavaPlugin {
     public void onEnable() {
         //Start API implementation
         api = new LunarClientImplementation(this);
+        plugin = this;
 
         // Construct manager classes
         this.userManager = new UserManager();
@@ -89,6 +93,14 @@ public class LunarClientPlugin extends JavaPlugin {
 
         // Create notes
         this.saveResource("notes.yml", true);
+    }
+
+    public static String getMessage(String path) {
+        return ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString(path));
+    }
+
+    public static String getMessage(String path, String placeholder) {
+        return getMessage(path).replaceAll("\\{0}", placeholder);
     }
 
 }
