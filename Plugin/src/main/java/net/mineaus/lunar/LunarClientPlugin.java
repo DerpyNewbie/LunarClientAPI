@@ -17,6 +17,7 @@ import net.mineaus.lunar.module.hologram.HologramManagerImplementation;
 import net.mineaus.lunar.module.waypoint.WaypointManagerImplementation;
 import net.mineaus.lunar.utils.BufferUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -82,6 +83,13 @@ public class LunarClientPlugin extends JavaPlugin {
         // Register commands
         this.getCommand("lunarclient").setExecutor(new LunarClientCommand());
         this.getCommand("emote").setExecutor(new EmoteCommand());
+
+        // Change permission messages
+        this.getCommand("lunarclient").setPermissionMessage(ChatColor.translateAlternateColorCodes('&', this.getConfig().getString("perm.lunarclient")));
+        this.getCommand("emote").setPermissionMessage(ChatColor.translateAlternateColorCodes('&', this.getConfig().getString("perm.emote")));
+
+        // Create notes
+        this.saveResource("notes.yml", true);
     }
 
 }
