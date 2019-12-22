@@ -16,6 +16,7 @@ import net.mineaus.lunar.module.border.BorderManagerImplementation;
 import net.mineaus.lunar.module.hologram.HologramManagerImplementation;
 import net.mineaus.lunar.module.waypoint.WaypointManagerImplementation;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -25,7 +26,8 @@ import java.util.UUID;
 @Getter
 public class LunarClientPlugin extends JavaPlugin {
 
-    @Getter private static LunarClientAPI api;
+    @Getter
+    private static LunarClientAPI api;
 
     /* Managers */
     private UserManager userManager;
@@ -53,7 +55,7 @@ public class LunarClientPlugin extends JavaPlugin {
         this.getServer().getMessenger().registerIncomingPluginChannel(this, "Lunar-Client", (channel, player, bytes) -> {
             if (bytes[0] == 26) {
                 User user = getApi().getUserManager().getPlayerData(player);
-                if (user != null && !user.isLunarClient()){
+                if (user != null && !user.isLunarClient()) {
                     user.setLunarClient(true);
                     new AuthenticateEvent(player).call(this);
                 }
@@ -82,8 +84,8 @@ public class LunarClientPlugin extends JavaPlugin {
         this.getCommand("emote").setExecutor(new EmoteCommand());
 
         // Change permission messages
-        this.getCommand("lunarclient").setPermissionMessage(this.getConfig().getString("perm.lunarclient"));
-        this.getCommand("emote").setPermissionMessage(this.getConfig().getString("perm.emote"));
+        this.getCommand("lunarclient").setPermissionMessage(ChatColor.translateAlternateColorCodes('&', this.getConfig().getString("perm.lunarclient")));
+        this.getCommand("emote").setPermissionMessage(ChatColor.translateAlternateColorCodes('&', this.getConfig().getString("perm.emote")));
 
         // Create notes
         this.saveResource("notes.yml", true);
