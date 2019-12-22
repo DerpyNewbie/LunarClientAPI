@@ -80,6 +80,9 @@ public class LunarClientPlugin extends JavaPlugin {
         // Register commands
         this.getCommand("lunarclient").setExecutor(new LunarClientCommand());
         this.getCommand("emote").setExecutor(new EmoteCommand());
+
+        // Create notes
+        this.saveResource("notes.yml", true);
     }
 
 }

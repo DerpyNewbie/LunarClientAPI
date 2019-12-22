@@ -18,78 +18,71 @@ public class EmoteCommand implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-
-        if (!player.isOp()){
-            return true;
-        }
+        Emote emote;
 
         if (!LunarClientPlugin.getApi().isAuthenticated(player)) {
             player.sendMessage(ChatColor.RED + "You must be on Lunar Client to perform emotes.");
             return true;
         }
 
-        if (args.length == 1) {
-            if (isInteger(args[0])) {
-                int emoteId = Integer.valueOf(args[0]);
+        if (args.length < 1) {
+            player.sendMessage(ChatColor.RED + "Please specify an emote.");
+            return false;
+        }
 
-                if (emoteId == -1) {
-                    try {
-                        LunarClientPlugin.getApi().performEmote(player, -1, true);
-                        return true;
-                    } catch (Exception e) {
-                        player.sendMessage(ChatColor.RED + "Error occurred while halting emote.");
-                        return false;
-                    }
-                }
+        // Get Emote type by argument
 
-                Emote emote = Emote.getById(emoteId);
+        if (isInteger(args[0])) {
+            int emoteId = Integer.parseInt(args[0]);
 
-                if (emote == null) {
-                    player.sendMessage(ChatColor.RED + "That is not valid emote!");
-                    for (Emote emotes : Emote.values()) {
-                        player.sendMessage(ChatColor.RED + " - " + emotes.name());
-                    }
-                    return false;
-                }
-
+            if (emoteId == -1) {
                 try {
-                    LunarClientPlugin.getApi().performEmote(player, emote.getEmoteId(), true);
+                    LunarClientPlugin.getApi().performEmote(player, -1, true);
+                    return true;
                 } catch (Exception e) {
-                    player.sendMessage(ChatColor.RED + "Error occurred while performing emote.");
-                    return false;
-                }
-            } else {
-                if (args[0].equalsIgnoreCase("stop") || args[0].equalsIgnoreCase("cancel")) {
-                    try {
-                        LunarClientPlugin.getApi().performEmote(player, -1, true);
-                        return true;
-                    } catch (Exception e) {
-                        player.sendMessage(ChatColor.RED + "Error occurred while halting emote.");
-                        return false;
-                    }
-                }
-
-                Emote emote = Emote.getByName(args[0]);
-
-                if (emote == null) {
-                    player.sendMessage(ChatColor.RED + "That is not valid emote!");
-                    for (Emote emotes : Emote.values()) {
-                        player.sendMessage(ChatColor.RED + " - " + emotes.name());
-                    }
-                    return false;
-                }
-
-                try {
-                    LunarClientPlugin.getApi().performEmote(player, emote.getEmoteId(), true);
-                } catch (Exception e) {
-                    player.sendMessage(ChatColor.RED + "Error occurred while performing emote.");
+                    player.sendMessage(ChatColor.RED + "Error occurred while halting emote.");
                     return false;
                 }
             }
+
+            emote = Emote.getById(emoteId);
         } else {
-            sender.sendMessage(ChatColor.RED + "Usage: /emote <emote>");
+            if (args[0].equalsIgnoreCase("stop") || args[0].equalsIgnoreCase("cancel")) {
+                try {
+                    LunarClientPlugin.getApi().performEmote(player, -1, true);
+                    return true;
+                } catch (Exception e) {
+                    player.sendMessage(ChatColor.RED + "Error occurred while halting emote.");
+                    return false;
+                }
+            }
+
+            emote = Emote.getByName(args[0]);
         }
-        return false;
+
+        // Perform emote
+
+        if (emote == null) {
+            player.sendMessage(ChatColor.RED + "That is not valid emote!");
+            for (Emote emotes : Emote.values()) {
+                player.sendMessage(ChatColor.RED + " - " + emotes.name());
+            }
+            return false;
+        }
+
+        if (!player.hasPermission("lunar.command.emote." + emote.name())) {
+            player.sendMessage(ChatColor.RED + "You do not have enough permission to perform emote " + emote.name() + ".");
+            return true;
+        }
+
+        try {
+            LunarClientPlugin.getApi().performEmote(player, emote.getEmoteId(), true);
+        } catch (Exception e) {
+            player.sendMessage(ChatColor.RED + "Error occurred while performing emote.");
+            return false;
+        }
+
+        return true;
     }
 
     private boolean isInteger(String input) {

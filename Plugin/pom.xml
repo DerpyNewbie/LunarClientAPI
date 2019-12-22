@@ -32,6 +32,7 @@
 
 
     <build>
+        <!--suppress UnresolvedMavenProperty -->
         <finalName>LunarClient-Plugin-${git.commit.id.abbrev}</finalName>
         <defaultGoal>clean install</defaultGoal>
         <resources>

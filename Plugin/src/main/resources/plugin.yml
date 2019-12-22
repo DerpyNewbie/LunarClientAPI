@@ -1,10 +1,31 @@
 name: LunarClientAPI
 main: net.mineaus.lunar.LunarClientPlugin
 version: ${git.commit.id.abbrev}
+authors: [ThatKawaiiSam, TewPingz, skeltalgit, DerpyNewbie]
 commands:
     lunarclient:
         aliases: [lc, lunar]
         description: Lists who is on Lunar Client.
+        permission: lunar.command.lunarclient
     emote:
         aliases: [e]
         description: Display an emote on a player.
+        permission: lunar.command.emote
+permissions:
+    lunar.*:
+        description: "Allow player to use all commands"
+        default: op
+        children:
+            lunar.command.*: true
+    lunar.command.*:
+        description: "Allow player to use all commands"
+        default: op
+        children:
+            lunar.command.emote: true
+            lunar.command.lunarclient: true
+    lunar.command.emote:
+        description: "Allow player to use emote command"
+        default: op
+    lunar.command.lunarclient:
+        description: "Allow player to use lunarclient command"
+        default: true

@@ -1,0 +1,15 @@
+#
+# valid Emotes type list for permissions:
+#    WAVE(0),
+#    HANDS_UP(1),
+#    FLOSS(2),
+#    DAB(3),
+#    T_POSE(4),
+#    SHRUG(5),
+#    FACEPALM(6);
+# valid Notification type list for commands:
+#    INFO,
+#    ERROR,
+#    NEUTRAL;
+#
+#
