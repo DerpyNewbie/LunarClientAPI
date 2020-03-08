@@ -1,9 +1,29 @@
-**WARNING: This does not work on `LC 1.8`. and might not work as well as in newer version of `LC 1.7`. 
-I'm not going to make fix on this, since i'm too lazy to do so.**
+<p align="center">
+    <img src="https://i.imgur.com/KBfKC1n.png" width="150" height="150"/>
+</p>
 
-# Description
-this is forked version of https://github.com/skeltalgit/LunarClientAPI.
-made it so you can configure messages/permissions bit more than original one.
+## LunarClientAPI
 
-# Original message
-people are trying to make money off my friends code when they have no resell rights. enjoy.
+The Lunar Client API will allow you to detect when a player is running Lunar Client, enable and disable HUD modules, allow x-ray for your staff, and much more.
+
+## Reporting an issue
+
+If you find an issue you can submit it [here](https://github.com/skeltalgit/LunarClientAPI/issues).
+
+## Get the Source
+
+1. Install maven `sudo apt-get install maven`
+2. Verify installation `mvn -v`
+3. Clone the repository `git clone git@github.com:skeltalgit/LunarClient.git`
+4. Navigate to the new folder `cd lunarclientapi`
+5. Import `pom.xml` into your IDE
+
+## Compile a Build
+
+1. Navigate to the repository home directory
+2. Run `mvn clean install`
+3. Find the compiled jar at `target/LunarClientAPI.jar`
+
+## Contributing
+
+You can submit a [pull request](https://github.com/skeltalgit/LunarClientAPI/pulls) with your changes.
