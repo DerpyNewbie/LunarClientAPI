@@ -11,6 +11,9 @@ commands:
         aliases: [e]
         description: Display an emote on a player.
         permission: lunar.command.emote
+    emotebyid:
+        description: Execute emotes by id.
+        permission: lunar.command.emote.byid
 permissions:
     lunar.*:
         description: "Allow player to use all commands"
@@ -26,6 +29,9 @@ permissions:
     lunar.command.emote:
         description: "Allow player to use emote command"
         default: op
+    lunar.command.emote.byid:
+        description: "Allow player to use emotebyid command"
+        default: false
     lunar.command.lunarclient:
         description: "Allow player to use lunarclient command"
         default: true

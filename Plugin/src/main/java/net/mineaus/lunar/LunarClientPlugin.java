@@ -8,6 +8,7 @@ import net.mineaus.lunar.api.module.hologram.HologramManager;
 import net.mineaus.lunar.api.module.waypoint.WaypointManager;
 import net.mineaus.lunar.api.user.User;
 import net.mineaus.lunar.api.user.UserManager;
+import net.mineaus.lunar.command.EmoteByIdCommand;
 import net.mineaus.lunar.command.EmoteCommand;
 import net.mineaus.lunar.command.LunarClientCommand;
 import net.mineaus.lunar.listener.ClientListener;
@@ -86,10 +87,12 @@ public class LunarClientPlugin extends JavaPlugin {
         // Register commands
         this.getCommand("lunarclient").setExecutor(new LunarClientCommand());
         this.getCommand("emote").setExecutor(new EmoteCommand());
+        this.getCommand("emotebyid").setExecutor(new EmoteByIdCommand());
 
         // Change permission messages
         this.getCommand("lunarclient").setPermissionMessage(ChatColor.translateAlternateColorCodes('&', this.getConfig().getString("perm.lunarclient")));
         this.getCommand("emote").setPermissionMessage(ChatColor.translateAlternateColorCodes('&', this.getConfig().getString("perm.emote")));
+        this.getCommand("emotebyid").setPermissionMessage(ChatColor.translateAlternateColorCodes('&', this.getConfig().getString("perm.emote")));
 
         // Create notes
         this.saveResource("notes.yml", true);
