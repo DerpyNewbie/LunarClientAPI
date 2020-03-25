@@ -11,7 +11,14 @@ public enum Emote {
     DAB(3),
     T_POSE(4),
     SHRUG(5),
-    FACEPALM(6);
+    FACEPALM(6),
+    FLOSS_NEW(32),
+    INFINITE_DAB(33),
+    SKIBIDI(35),
+    T_POSE_NEW(53),
+    TWEAK(55),
+    YES(57),
+    ;
 
     private int emoteId;
 
